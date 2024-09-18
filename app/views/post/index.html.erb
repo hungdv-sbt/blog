@@ -1,0 +1,18 @@
+<div class="my-3">
+  <%= link_to 'Create Post', posts_new_path, class: 'text-underline' %>
+</div>
+<div>
+  <% @posts.each do |post| %>
+    <div class="card mb-3">
+      <img src="<%= post.image %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.description %></p>
+        <p class="card-text"><small class="text-body-secondary"><%= post.created_at %></small></p>
+      </div>
+      <%#= link_to 'Show', post_path(post), class: 'btn btn-primary' %>
+      <%#= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary mx-1' %>
+      <%#= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    </div>
+  <% end %>
+</div>

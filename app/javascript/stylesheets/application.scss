@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+.nav-item.dropdown.remove-list-style {
+    list-style-type: none;
+}
+
+.dropdown-menu.show {
+    right: -10% !important;
+    left: unset;
+}
+
