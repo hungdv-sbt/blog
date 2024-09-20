@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
+  has_one_attached :image
   belongs_to :user, foreign_key: 'id', optional: true
 
-  enum status: %i[draft publish]
-  DEFAULT_ITEMS_EACH_PAGE = 10
+  enum status: { draft: 0, publish: 1 }
+
+  scope :publish_post, -> { where(status: 'publish').order(created_at: :desc) }
+  # Ex:- scope :active, -> {where(:active => true)}
 end

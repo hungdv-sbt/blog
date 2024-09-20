@@ -1,0 +1,21 @@
+<div>
+  <% posts.each do |post| %>
+    <div class="d-flex flex-row card mb-3">
+      <%# binding.pry %>
+      <img src="<%= url_for(post.image) unless post.image.blank? %>" class="card-img-top " alt="..." onerror="this.onerror=null; this.src='<%= asset_path('default.png')%>'">
+      <div class="card-body w-50">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.description %></p>
+        <p class="card-text"><%= post.status %></p>
+        <p class="card-text"><small class="text-body-secondary"><%= post.created_at %></small></p>
+        <% if show_action %>
+          <div class="d-flex">
+            <%= link_to 'Edit', edit_post_path(post.id), class: 'btn btn-primary mx-1' %>
+            <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= pagy_bootstrap_nav(pagy).html_safe unless posts.empty? %>

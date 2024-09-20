@@ -1,0 +1,23 @@
+<%= form_for(:post, url: url, method: method) do |f| %>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area(:description, size: '50x10') %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select(:status, Post.statuses.collect { |p| [ p[0], p[1] ] }) %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions my-3">
+    <%= f.submit action, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+<%= link_to 'Back', posts_list_path(), class: 'text-underline' %>
