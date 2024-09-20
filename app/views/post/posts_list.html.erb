@@ -1,4 +1,5 @@
 <div class="my-3">
   <%= link_to 'Create Post', new_post_path, class: 'text-underline' %>
 </div>
+<%= render partial: 'post/layouts/search', locals: { url_search: posts_list_path(), params: :title_or_description_cont }%>
 <%= render partial: 'post/layouts/list_post', locals: { posts: @posts , pagy: @pagy, show_action: true } %>

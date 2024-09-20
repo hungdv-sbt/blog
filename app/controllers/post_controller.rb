@@ -20,8 +20,9 @@ class PostController < ApplicationController
   end
 
   def posts_list
-    posts_of_user = Post.eager_load_photos.includes(:user).where(user_id: current_user.id).order(created_at: :desc)
-    @pagy, @posts = pagy(posts_of_user, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
+    @q = Post.eager_load_photos.includes(:user).where(user_id: current_user.id).ransack(params[:q])
+    results = @q.result
+    @pagy, @posts = pagy(results, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
 
   def edit

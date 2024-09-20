@@ -6,5 +6,6 @@ class Post < ApplicationRecord
 
   scope :publish_post, -> { where(status: 'publish').order(created_at: :desc) }
   scope :eager_load_photos, -> { includes image_attachment: :blob }
+
   # Ex:- scope :active, -> {where(:active => true)}
 end

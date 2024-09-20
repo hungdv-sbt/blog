@@ -32,6 +32,10 @@ gem "pundit"
 gem "ransack"
 gem "pagy"
 
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'ckeditor'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

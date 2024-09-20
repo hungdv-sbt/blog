@@ -1,15 +1,15 @@
 <div class="container mt-4">
   <div class="row gx-5">
-    <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 300px;">
+    <div class="col-lg-4 mb-5 mb-lg-0" style="min-height: 300px;">
       <div class="position-relative">
         <img class="position-absolute card-img-top rounded" src="<%= url_for(@post.image) unless @post.image.blank? %>" onerror="this.onerror=null; this.src='<%= asset_path('default.png')%>'" style="object-fit: cover;">
       </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
       <div class="border-start border-5 border-primary ps-5 mb-5">
         <h3 class="display-6 text-uppercase mb-0"><%= @post.title %></h3>
       </div>
-      <h4 class="text-body mb-4"><%= @post.description %></h4>
+      <h4 class="text-body mb-4 text-break"><%= @post.description.html_safe %></h4>
       </div>
     </div>
   </div>
