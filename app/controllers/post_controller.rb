@@ -5,9 +5,8 @@ class PostController < ApplicationController
 
   def index
     @q = Post.publish_post.includes(:image_attachment).ransack(params[:q])
-    items = params[:items_each_page].present? ? params[:items_each_page] : Post::DEFAULT_ITEMS_EACH_PAGE
     results = @q.result
-    @pagy, @posts = pagy(results, items: items)
+    @pagy, @posts = pagy(results, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
 
   def new
@@ -22,10 +21,8 @@ class PostController < ApplicationController
   end
 
   def posts_list
-    posts_of_user = Post.all.where(user_id: current_user.id).includes(:image_attachment)
-    items = params[:items_each_page].present? ? params[:items_each_page] : Post::DEFAULT_ITEMS_EACH_PAGE
-
-    @pagy, @posts = pagy(posts_of_user, items: items)
+    posts_of_user = Post.where(user_id: current_user.id).includes([:image_attachment])
+    @pagy, @posts = pagy(posts_of_user, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
 
   def edit
