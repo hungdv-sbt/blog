@@ -13,11 +13,11 @@
       <div class="d-flex">
       <li class="nav-item dropdown remove-list-style">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= current_user.present? ? current_user.name : '=))' %>
+        <%= user_signed_in? ? current_user.name : '=))' %>
         </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="<%= posts_list_path() %>">Blogs</a></li>
-          <% if current_user.present? %>
+          <% if user_signed_in? %>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to 'Signout', destroy_user_session_path, class: "dropdown-item", method: 'delete' %></li>
           <% end%>
