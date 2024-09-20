@@ -1,10 +1,10 @@
 class PostController < ApplicationController
-  before_action :redirect_to_back_home, only: %i[new create edit update posts_list destroy]
   before_action :set_post, only: %i[edit update show destroy]
-  before_action :authorize_post, only: %i[edit update]
+  before_action :authorize_post, only: %i[edit update destroy]
+  before_action :conver_status_string_to_integer, only: %i[create update]
 
   def index
-    @q = Post.publish_post.includes(:image_attachment).ransack(params[:q])
+    @q = Post.publish_post.eager_load_photos.includes(:user).ransack(params[:q])
     results = @q.result
     @pagy, @posts = pagy(results, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
@@ -13,27 +13,25 @@ class PostController < ApplicationController
   end
 
   def create
-    status = params.dig(:post, :status).to_i
-    post = Post.new(post_params.merge({ user_id: current_user.id, status: status }))
+    post = current_user.posts.new(post_params.merge(status: @status_id))
     return redirect_to posts_list_path if post.save
 
     redirect_to :back
   end
 
   def posts_list
-    posts_of_user = Post.where(user_id: current_user.id).includes([:image_attachment])
+    posts_of_user = Post.eager_load_photos.includes(:user).where(user_id: current_user.id).order(created_at: :desc)
     @pagy, @posts = pagy(posts_of_user, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
 
   def edit
   end
 
-  def show
+  def show 
   end
 
   def update
-    status = params.dig(:post, :status).to_i
-    return redirect_to posts_list_path if @post.update(post_params.merge({ user_id: current_user.id, status: status }))
+    return redirect_to posts_list_path if @post.update(post_params.merge(status: @status_id))
 
     redirect_to post_index_path
   end
@@ -45,8 +43,13 @@ class PostController < ApplicationController
   end
 
   private
+
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+  end
+
+  def conver_status_string_to_integer
+    @status_id = params.dig(:post, :status).to_i
   end
 
   def post_params
@@ -55,9 +58,5 @@ class PostController < ApplicationController
 
   def authorize_post
     authorize @post
-  end
-
-  def redirect_to_back_home
-    return redirect_to posts_path if current_user.blank?
   end
 end

@@ -18,7 +18,12 @@ class PostPolicy
     owner_post?
   end
 
+  def destroy?
+    owner_post?
+  end
+
   private
+
   def owner_post?
     user.id == post.user_id
   end
