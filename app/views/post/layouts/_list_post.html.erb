@@ -1,0 +1,33 @@
+<div class="row g-5 mb-4">
+  <% posts.each do |post| %>
+    <div class="col-lg-6">
+      <div class="blog-item">
+        <div class="row g-0 bg-light overflow-hidden">
+          <div class="col-12 col-sm-5">
+            <img class="img-fluid card-img-top" src="<%= url_for(post.image) unless post.image.blank? %>" onerror="this.onerror=null; this.src='<%= asset_path('default.png')%>'" style="object-fit: cover;">
+          </div>
+          <div class="col-12 col-sm-7 h-100 d-flex">
+            <div class="p-4">
+              <div class="d-flex mb-3">
+                <% unless show_action %>
+                  <small class="me-3"><%= image_tag 'person.svg', class: 'mr-2' %><%= post.user.name %></small>
+                <% end %>
+                <small><%= image_tag 'calendar.svg', class: 'mr-2' %><%= post.created_at %></small>
+              </div>
+              <h5 class="text-uppercase mb-3"><%= post.title %></h5>
+              <% if show_action %><p>Status: <%= post.status.capitalize %></p><% end %>
+              <a class="text-primary text-uppercase" href="<%= post_path(post.id) %>">Read More<%= image_tag 'arrow-right.svg', class: 'ml-3' %></i></a>
+              <% if show_action %>
+                <div class="d-flex mt-4">
+                  <%= link_to 'Edit', edit_post_path(post.id), class: 'btn btn-primary mx-1' %>
+                  <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= pagy_bootstrap_nav(pagy).html_safe unless posts.empty? %>

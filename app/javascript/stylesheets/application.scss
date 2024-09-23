@@ -1,1 +1,43 @@
 @import "bootstrap";
+
+.nav-item.dropdown.remove-list-style {
+  list-style-type: none;
+}
+
+.dropdown-menu.show {
+  right: -10% !important;
+  left: unset;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.card-img-top {
+  height: 300px;
+  width: 400px;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.text-primary {
+  color: #7AB730 !important;
+}
+
+.ml-1 {
+  margin-left: .5rem;
+}
+
+.ml-2 {
+  margin-left: 1rem;
+}
+
+.ml-3 {
+  margin-left: 1.5rem;
+}
+
+.ml-4 {
+  margin-left: 2rem;
+}

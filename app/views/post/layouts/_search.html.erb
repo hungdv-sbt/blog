@@ -1,0 +1,8 @@
+<%= form_for(@q, url: url_search, html: { class: 'mb-4', method: :get }) do |f| %>
+  <div class="d-flex justify-content-end">
+    <%= f.text_field params, class: 'form-control w-40', placeholder: 'Search' %>
+    <button type="submit" class="btn btn-submit-search search-form bg-primary ml-1">
+      <%= image_tag 'icon-search.svg' %>
+    </button>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">BLOG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+      </li>
+      </ul>
+      <div class="d-flex">
+      <li class="nav-item dropdown remove-list-style">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= user_signed_in? ? current_user.name : '=))' %>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="<%= posts_list_path() %>">Blogs</a></li>
+          <% if user_signed_in? %>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'Edit User', edit_user_registration_path(), class: 'dropdown-item' %></li>
+            <li><%= link_to 'Signout', destroy_user_session_path, class: "dropdown-item", method: 'delete' %></li>
+          <% end%>
+        </ul>
+      </li>
+      </div>
+    </div>
+  </div>
+</nav>
