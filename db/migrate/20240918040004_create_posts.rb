@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.bigint 'user_id'
       t.string 'title'
       t.text 'description'
-      t.bigint 'status'
+      t.integer 'status', limit: 1
       t.string 'file_name'
       t.datetime 'deleted_at'
       t.timestamps

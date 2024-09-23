@@ -16,7 +16,7 @@
         <%= user_signed_in? ? current_user.name : '=))' %>
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="<%= posts_list_path() %>">Blogs</a></li>
+          <li><a class="dropdown-item" href="<%= list_post_index_path() %>">Blogs</a></li>
           <% if user_signed_in? %>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to 'Edit User', edit_user_registration_path(), class: 'dropdown-item' %></li>

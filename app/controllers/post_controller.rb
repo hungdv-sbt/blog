@@ -14,13 +14,13 @@ class PostController < ApplicationController
 
   def create
     post = current_user.posts.new(post_params.merge(status: @status_id))
-    return redirect_to posts_list_path if post.save
+    return redirect_to list_post_index_path if post.save
 
     redirect_to :back
   end
 
-  def posts_list
-    @q = Post.eager_load_photos.includes(:user).where(user_id: current_user.id).ransack(params[:q])
+  def my_posts
+    @q = current_user.posts.eager_load_photos.includes(:user).ransack(params[:q])
     results = @q.result
     @pagy, @posts = pagy(results, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
@@ -32,13 +32,13 @@ class PostController < ApplicationController
   end
 
   def update
-    return redirect_to posts_list_path if @post.update(post_params.merge(status: @status_id))
+    return redirect_to list_post_index_path if @post.update(post_params.merge(status: @status_id))
 
     redirect_to post_index_path
   end
 
   def destroy
-    return redirect_to posts_list_path if @post.destroy
+    return redirect_to list_post_index_path if @post.destroy
 
     redirect_to post_index_path
   end

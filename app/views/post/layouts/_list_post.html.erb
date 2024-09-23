@@ -12,11 +12,13 @@
                 <% unless show_action %>
                   <small class="me-3"><%= image_tag 'person.svg', class: 'mr-2' %><%= post.user.name %></small>
                 <% end %>
-                <small><%= image_tag 'calendar.svg', class: 'mr-2' %><%= post.created_at %></small>
+                <small><%= image_tag 'calendar.svg', class: 'mr-2' %><%= post.decorate.created_at %></small>
               </div>
               <h5 class="text-uppercase mb-3"><%= post.title %></h5>
-              <% if show_action %><p>Status: <%= post.status.capitalize %></p><% end %>
-              <a class="text-primary text-uppercase" href="<%= post_path(post.id) %>">Read More<%= image_tag 'arrow-right.svg', class: 'ml-3' %></i></a>
+              <%= post.decorate.show_status(show: show_action) %>
+              <a class="text-primary text-uppercase" href="<%= post_path(post.id) %>">
+                Read More<%= image_tag 'arrow-right.svg', class: 'ml-3' %>
+              </a>
               <% if show_action %>
                 <div class="d-flex mt-4">
                   <%= link_to 'Edit', edit_post_path(post.id), class: 'btn btn-primary mx-1' %>

@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 require "active_storage/engine"
+require 'dotenv'
+Dotenv.load
 
 module Blog
   class Application < Rails::Application
@@ -16,5 +18,8 @@ module Blog
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
   end
 end
