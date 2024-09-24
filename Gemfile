@@ -32,7 +32,7 @@ gem "pundit"
 gem "pagy"
 gem "ransack"
 
-gem 'ckeditor'
+gem 'ckeditor', '~> 4.2'
 gem 'draper'
 gem 'mini_magick'
 

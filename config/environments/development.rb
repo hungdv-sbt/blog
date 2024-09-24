@@ -36,7 +36,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  config.action_mailer.default_url_options = {host: "localhost", port: 3001}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -68,15 +68,14 @@ Rails.application.configure do
     Bullet.raise = true # raise an error if n+1 query occurs
     Bullet.unused_eager_loading_enable = false
   end
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
-    port: 25,
-    domain: '*',
-    user_name: '*',
-    password: '*',
-    enable_starttls_auto: true,
+    port: 587,
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
 end
