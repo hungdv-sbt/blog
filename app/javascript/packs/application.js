@@ -17,3 +17,5 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 //= require ckeditor/init
+import * as Routes from './routes.js.erb';
+window.Routes = Routes;

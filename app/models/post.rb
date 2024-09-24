@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   has_one_attached :image
   belongs_to :user, foreign_key: 'user_id', optional: true
+  has_many :post_comments, dependent: :destroy
 
   enum status: { draft: 0, publish: 1 }
 

@@ -8,6 +8,10 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
     "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "jquery-blockui": "^2.7.0",
+    "jquery-ui-dist": "^1.13.3",
+    "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

@@ -35,6 +35,9 @@ gem "ransack"
 gem 'ckeditor', '~> 4.2'
 gem 'draper'
 gem 'mini_magick'
+gem "js-routes"
+
+gem 'jquery-rails'
 
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 

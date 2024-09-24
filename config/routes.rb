@@ -8,4 +8,6 @@ Rails.application.routes.draw do
       get 'list', to: 'post#my_posts'
     end
   end
+
+  resources :post_comments
 end

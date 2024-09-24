@@ -16,6 +16,6 @@
     <div class="container min-height-660px">
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render 'layouts/footer' if user_signed_in? %>
   </body>
 </html>
