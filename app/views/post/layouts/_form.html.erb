@@ -1,23 +1,28 @@
 <%= form_for(:post, url: url, method: method) do |f| %>
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field mt-3">
     <%= f.label :description %><br>
     <%= f.text_area(:description, size: '50x10', class: 'ckeditor') %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select(:status, Post.statuses.collect { |p| [ p[0], p[1] ] }) %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+  <div class="d-flex align-items-center gap-3 mt-3">
+    <div class="field">
+      <%= f.label :status %><br>
+      <%= f.select(:status, options_for_select(Post.statuses.collect { |p| [ p[0], p[1] ] }, selected: :status), {}, class: 'form-control') %>
+    </div>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="actions my-3">
+  <div class="actions my-3 text-center">
     <%= f.submit action, class: 'btn btn-primary' %>
   </div>
 <% end %>
-<%= link_to 'Back', list_post_index_path(), class: 'text-underline' %>
+<%= link_to list_post_index_path(), class: 'd-flex gap-3 align-intems-center text-underline' do %>
+  <%= image_tag 'box-arrow-left.svg' %>
+  <span class="pl-1">Back</span>
+<% end %>

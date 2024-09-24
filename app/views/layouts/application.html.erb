@@ -8,12 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
-    <div class="container">
+    <div class="container min-height-660px">
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
