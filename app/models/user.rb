@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  belongs_to :post_comment, foreign_key: 'user_comment_id'
 
   validates :name, presence: true
   validates :password, length: { in: 8..32 }

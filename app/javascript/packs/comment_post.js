@@ -2,7 +2,10 @@ $(document).ready(function(){
   $('#btn-submit-comment').on('click', function(){
     const post_id = $('input[name="comment[post_id]"').val();
     const comment = $('input[name="comment[comment]"]').val();
-    if (comment == '') return;
+    if (comment == '') {
+      $('input[name="comment[comment]"').addClass('blank_comment').focus();
+      return;
+    } 
 
     $.ajax({
       method: 'POST',
@@ -14,7 +17,7 @@ $(document).ready(function(){
       }
     }).done(function(data){
       $('#show-comments').html(data.posts)
-      $('input[name="comment[comment]"]').val()
+      $('input[name="comment[comment]"]').val("")
     }).fail(function(){
       window.location.reload()
     })
