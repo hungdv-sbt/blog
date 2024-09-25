@@ -10,7 +10,7 @@ class PostDecorator < ApplicationDecorator
   #     end
   #   end
   def created_at
-    object.created_at.strftime('%m/%d/%y')
+    object.created_at.strftime('%m/%d/%Y')
   end
 
   def show_status(show: false)

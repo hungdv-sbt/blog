@@ -10,14 +10,14 @@
       <div class="form-comment mt-4">
         <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
         <input type="text" name="comment[comment]" class="form-control">
-        <div class="btn btn-primary mt-3" id="btn-submit-comment">Comment</div>
+        <div class="btn btn-primary mt-3 disabled" id="btn-submit-comment">Comment</div>
       </div>
       <div class="container justify-content-center mt-2 mb-4 bg-light border-left border-right" id="show-comments">
         <%= render partial: 'post_comments/show_list_comment', locals: { comments: @comments } %>
       </div>
     </div>
     <div class="col-lg-8">
-      <div class="border-start border-5 border-primary ps-5 mb-5 text-break">
+      <div class="border-start border-5 border-primary ps-3 mb-5 text-break">
         <h3 class="display-6 text-uppercase mb-0"><%= @post.title %></h3>
       </div>
       <h4 class="text-body mb-4 text-break"><%= @post.description.html_safe %></h4>

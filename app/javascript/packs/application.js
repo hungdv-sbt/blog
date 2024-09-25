@@ -17,5 +17,12 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 //= require ckeditor/init
+//= require sweetalert2-rails
+// import 'sweetalert2/src/sweetalert2.scss'
 import * as Routes from './routes.js.erb';
+import Popup from './popup';
+import Comment from './comment';
+
 window.Routes = Routes;
+window.Popup = new Popup;
+window.Comment = new Comment;

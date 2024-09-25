@@ -1,8 +1,27 @@
 <% comments.each do |comment| %>
   <div class="d-flex justify-content-center py-2">
-    <div class="second py-2 px-2"> <span class="text7"><%= comment.comment %></span>
+    <div class="second py-2 px-2">
       <div class="d-flex justify-content-between py-1 pt-2">
-        <span class="text-3"><%= comment.user.name %></span><span class="text-3"><%= comment.decorate.created_at %></span>
+        <span class="text3"><%= comment.user.name %></span><span class="text3"><%= comment.decorate.created_at %></span>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <span class="fs-4 show-comment-<%= comment.id %>"><%= comment.comment %></span>
+          <input type="text" class="form-control input-comment-<%= comment.id %> d-none" value="<%= comment.comment %>">
+        </div>
+        <% if current_user.id == comment.user_comment_id %>
+          <div class="btn btn-show-comment-<%= comment.id %>" id="" onclick="Comment.showInputComment('<%= comment.id %>')">
+            <%= image_tag 'bursh.svg' %>
+          </div>
+          <div class="d-none btn-edit-and-cancel-<%= comment.id %>">
+            <div class="btn" onclick="Comment.updateComment('<%= comment.id %>')">
+              <%= image_tag 'send.svg' %>
+            </div>
+            <div class="btn btn-cancel-edit-comment" onclick="Comment.hideInputComment('<%= comment.id %>')">
+              <%= image_tag 'trash.svg' %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

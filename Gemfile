@@ -36,6 +36,8 @@ gem 'ckeditor', '~> 4.2'
 gem 'draper'
 gem 'mini_magick'
 gem "js-routes"
+gem 'sweetalert2-rails'
+gem "gon"
 
 gem 'jquery-rails'
 

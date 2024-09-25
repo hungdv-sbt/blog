@@ -4,6 +4,7 @@ $(document).ready(function(){
     const comment = $('input[name="comment[comment]"]').val();
     if (comment == '') {
       $('input[name="comment[comment]"').addClass('blank_comment').focus();
+      Popup.alert('Please enter a comment', 'ERROR', 'error');
       return;
     } 
 
@@ -16,10 +17,24 @@ $(document).ready(function(){
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     }).done(function(data){
+      Popup.alert('Comment success', 'SUCCESS')
       $('#show-comments').html(data.posts)
-      $('input[name="comment[comment]"]').val("")
+      $('input[name="comment[comment]"]').removeClass('blank_comment').val("");
+      $('#btn-submit-comment').addClass('disabled');
     }).fail(function(){
       window.location.reload()
     })
   })
+
+  $('input[name="comment[comment]"]').on('input', function(){
+    enabledSubmitButton($('#btn-submit-comment'), ($('input[name="comment[comment]"]').val()))
+  });
+
+  function enabledSubmitButton(button, is_input_value){
+    if (is_input_value) {
+      button.removeClass('disabled');
+    } else {
+      button.addClass('disabled');
+    }
+  }
 });

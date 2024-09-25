@@ -4,6 +4,21 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_gon
+
+  def set_gon
+    gon.is_login = current_user.present?
+    return if current_user.blank?
+
+    gon.user = {
+      id: current_user&.id,
+      name: current_user&.name
+    }
+  end
+
+  def login?
+    current_user.present?
+  end
 
   protected
 

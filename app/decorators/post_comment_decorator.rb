@@ -10,6 +10,6 @@ class PostCommentDecorator < ApplicationDecorator
   #     end
   #   end
   def created_at
-    object.created_at.strftime('%m/%d/%y')
+    object.created_at.localtime.strftime('%m/%d/%y %k:%M')
   end
 end
