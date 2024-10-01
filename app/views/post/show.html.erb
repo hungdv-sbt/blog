@@ -7,11 +7,14 @@
       <div class="">
         <img class="card-img-top rounded" src="<%= url_for(@post.image) unless @post.image.blank? %>" onerror="this.onerror=null; this.src='<%= asset_path('default.png')%>'" style="object-fit: cover;">
       </div>
-      <div class="form-comment mt-4">
+      <form id="form-comment" class="form-comment mt-4">
         <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
-        <input type="text" name="comment[comment]" class="form-control">
-        <div class="btn btn-primary mt-3 disabled" id="btn-submit-comment">Comment</div>
-      </div>
+        <p class="emoji-picker-container w-100">
+          <input type="text" name="comment[comment]" class="form-control" data-emojiable="true">
+        </p>
+        <input type="file" name="comment[image]" id="image-comment" class="form-control">
+        <div class="btn btn-primary mt-3" id="btn-submit-comment">Comment</div>
+      </form>
       <div class="container justify-content-center mt-2 mb-4 bg-light border-left border-right" id="show-comments">
         <%= render partial: 'post_comments/show_list_comment', locals: { comments: @comments } %>
       </div>

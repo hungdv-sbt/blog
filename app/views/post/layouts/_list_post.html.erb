@@ -14,7 +14,7 @@
                 <% end %>
                 <small><%= image_tag 'calendar.svg', class: 'mr-2' %><%= post.decorate.created_at %></small>
               </div>
-              <h5 class="text-uppercase mb-3"><%= post.title %></h5>
+              <h5 class="text-ellipsis mb-3 max-width-300px"><%= post.title %></h5>
               <%= post.decorate.show_status(show: show_action) %>
               <a class="text-primary text-uppercase" href="<%= post_path(post.id) %>">
                 Read More<%= image_tag 'arrow-right.svg', class: 'ml-3' %>

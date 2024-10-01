@@ -29,7 +29,7 @@ class PostController < ApplicationController
   end
 
   def show
-    @comments = @post.post_comments.includes(:user).order(created_at: :desc).limit(5)
+    @comments = @post.post_comments.eager_load_photos.includes(:user).order(created_at: :desc).limit(5)
   end
 
   def update

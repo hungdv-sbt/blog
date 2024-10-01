@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :post_comments
+  resources :post_comments do
+    collection do
+      post 'remove_image', to: 'post_comments#remove_image'
+    end
+  end
 end

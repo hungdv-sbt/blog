@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ *= require rails_emoji_picker
+ *= require bootstrap
+ */
 .footer {
   background:#232a34;
   padding-bottom: 20px;

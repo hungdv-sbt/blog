@@ -19,10 +19,24 @@ require("channels")
 //= require ckeditor/init
 //= require sweetalert2-rails
 // import 'sweetalert2/src/sweetalert2.scss'
+//= require jquery
+//= require rails_emoji_picker
+//= require_tree .
+//= require_self
 import * as Routes from './routes.js.erb';
 import Popup from './popup';
 import Comment from './comment';
+import Shared from "./shared";
 
 window.Routes = Routes;
 window.Popup = new Popup;
 window.Comment = new Comment;
+window.Shared = new Shared;
+
+$( document ).ready(function ()
+{
+  $( '.preloader' ).fadeOut();
+})
+
+require("trix")
+require("@rails/actiontext")
