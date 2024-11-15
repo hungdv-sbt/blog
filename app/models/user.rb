@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :followers, dependent: :destroy
 
   validates :name, presence: true
   validates :password, length: { in: 8..32 }

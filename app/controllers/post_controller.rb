@@ -2,9 +2,14 @@ class PostController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
   before_action :authorize_post, only: %i[edit update destroy]
   before_action :conver_status_string_to_integer, only: %i[create update]
+  before_action :get_post_index, only: :index
 
   def index
-    @q = Post.publish_post.eager_load_photos.includes(:user).ransack(params[:q])
+    if current_user.followers.present?
+      @q = @post_index.where(user_id: current_user.followers.pluck(:follower_id)).ransack(params[:q])
+    else
+      @q = @post_index.ransack(params[:q])
+    end
     results = @q.result
     @pagy, @posts = pagy(results, items: ApplicationRecord::DEFAULT_ITEMS_EACH_PAGE)
   end
@@ -45,6 +50,10 @@ class PostController < ApplicationController
   end
 
   private
+
+  def get_post_index
+    @post_index = Post.publish_post.eager_load_photos.includes(:user)
+  end
 
   def set_post
     @post = Post.find_by(id: params[:id])
