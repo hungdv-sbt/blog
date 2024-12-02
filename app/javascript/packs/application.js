@@ -6,10 +6,9 @@ window.bootstrap = require("bootstrap");
 import "../stylesheets/application.scss";
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+//= require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -17,3 +16,27 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= require ckeditor/init
+//= require sweetalert2-rails
+// import 'sweetalert2/src/sweetalert2.scss'
+//= require jquery
+//= require rails_emoji_picker
+//= require_tree .
+//= require_self
+import * as Routes from './routes.js.erb';
+import Popup from './popup';
+import Comment from './comment';
+import Shared from "./shared";
+
+window.Routes = Routes;
+window.Popup = new Popup;
+window.Comment = new Comment;
+window.Shared = new Shared;
+
+$( document ).ready(function ()
+{
+  $( '.preloader' ).fadeOut();
+})
+
+require("trix")
+require("@rails/actiontext")

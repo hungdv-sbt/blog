@@ -4,12 +4,29 @@
     <title>Blog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/navbar' if user_signed_in? %>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="d-table h-100 w-100">
+        <div class="d-tablecell">
+          <div class="d-flex justify-content-center">
+            <div class="loader"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- End Preloader -->
+    <div class="container min-height-660px">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' if user_signed_in? %>
   </body>
 </html>
